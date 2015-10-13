@@ -1,46 +1,59 @@
-NormalParticle star; //your code here
+NormalParticle [] star; //your code here
 void setup()
 {
-	size(500,500);
-	star = new NormalParticle();
+	size(600,600);
+	star = new NormalParticle[200];
+	for (int i=0; i<star.length; i++)
+	{
+		star[i] = new NormalParticle();
+	}
 	//your code here
 }
 void draw()
 {
-	frameRate(2);
+	frameRate(25);
 	background(0);
-	star.move();
-	star.show();//your code here
+for(int i=0; i<star.length;i++)
+{
+	star[i].move();
+	star[i].show();
+}
 }
 class NormalParticle
 {
 	double x, y ,angle, speed ;
-	int colors;
+	int colorR, colorB, colorG;
 	NormalParticle()
 	{
 		x=300;
 		y=300;
-		angle=0;
-		speed=20;
-		colors=20;
+		angle=(Math.random()*2*Math.PI);
+		speed=(Math.random()*15);
+		colorR=(int)(Math.random()*250);
+		colorG=(int)(Math.random()*250);
+		colorB=(int)(Math.random()*250);
 	}
 	void move()
 	{	
-		x=x+cos((float)angle)*speed;
-		y=y+sin((float)angle)*speed;
-		angle++;
+		x=x+Math.cos(angle)*speed;
+		y=y+Math.sin(angle)*speed;
+		angle=angle+0.04;
 
 	}
 	void show()
 	{
-		ellipse((float)x,(float)y,10,10);
+		
+		noStroke();
+		fill(colorR,colorG,colorB);
+		ellipse((float)x,(float)y,5,5);
 	}
 
 	//your code here
 }
 interface Particle
 {
-	//your code here
+	public void show();
+	public void move();//your code here
 }
 class OddballParticle //uses an interface
 {
