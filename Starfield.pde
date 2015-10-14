@@ -1,13 +1,17 @@
-NormalParticle [] star; //your code here
+Particle [] star; //your code here
 void setup()
 {
 	size(600,600);
-	star = new NormalParticle[200];
+	star = new Particle[200];
 	for (int i=0; i<star.length; i++)
 	{
+		
+		
 		star[i] = new NormalParticle();
+		
 	}
-	//your code here
+	star[0]= new OddballParticle();
+	star[1]= new JumboParticle();
 }
 void draw()
 {
@@ -19,7 +23,7 @@ for(int i=0; i<star.length;i++)
 	star[i].show();
 }
 }
-class NormalParticle
+class NormalParticle implements Particle
 {
 	double x, y ,angle, speed ;
 	int colorR, colorB, colorG;
@@ -33,14 +37,14 @@ class NormalParticle
 		colorG=(int)(Math.random()*250);
 		colorB=(int)(Math.random()*250);
 	}
-	void move()
+	public void move()
 	{	
 		x=x+Math.cos(angle)*speed;
 		y=y+Math.sin(angle)*speed;
 		angle=angle+0.04;
 
 	}
-	void show()
+	public void show()
 	{
 		
 		noStroke();
@@ -55,12 +59,46 @@ interface Particle
 	public void show();
 	public void move();//your code here
 }
-class OddballParticle //uses an interface
+class OddballParticle implements Particle//uses an interface
 {
-	//your code here
+	double x, y ,angle, speed ;
+	int colorR, colorB, colorG;
+	OddballParticle()
+	{
+		x=300;
+		y=300;
+		angle=(Math.random()*2*Math.PI);
+		speed=(Math.random()*15);
+		colorR=(int)(Math.random()*250);
+		colorG=(int)(Math.random()*250);
+		colorB=(int)(Math.random()*250);
+	}
+	public void move()
+	{
+		x=x+Math.cos(angle)*speed;
+		y=y+Math.sin(angle)*speed;
+		angle=angle+0.05;
+	}
+	public void show()
+	{
+		noStroke();
+		fill(colorR,colorG,colorB);
+		ellipse((float)x,(float)y,15,15);
+
+	}//your code here
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle//uses inheritance
 {
+	JumboParticle()
+	{
+
+	}
+	public void sh0ow()
+	{
+		noStroke();
+		fill(colorR,colorG,colorB);
+		ellipse((float)x,(float)y,25,25);
+	}
 	//your code here
 }
 
