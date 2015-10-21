@@ -73,22 +73,21 @@ class OddballParticle implements Particle//uses an interface
 		x=300;
 		y=300;
 		angle=(Math.random()*2*Math.PI);
-		radiusX=(float)(Math.random()*15)+250;
-		radiusY=(float)(Math.random()*15)+50;
+		radiusX=(float)(Math.random()*5)+5;
+		radiusY=(float)(Math.random()*5)+5;
 		colorR=(int)(Math.random()*250);
-		colorG=(int)(Math.random()*250);
-		colorB=(int)(Math.random()*250);
+		colorB=(int)(Math.random()*100)+150;
 	}
 	public void move()
 	{
-		x=300+Math.cos(angle)*radiusX;
-		y=300+Math.sin(angle)*radiusY;
+		x=(x+Math.cos(angle)*radiusX);
+		y=(y+Math.sin(angle)*radiusY);
 		angle=angle+0.05;
 	}
 	public void show()
 	{
 		noStroke();
-		fill(colorR,colorG,colorB);
+		fill(colorR,255,colorB);
 		ellipse((float)x,(float)y,15,15);
 
 	}
